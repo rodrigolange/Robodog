@@ -1,4 +1,3 @@
-import threading
 import pygame
 
 import Cliente
