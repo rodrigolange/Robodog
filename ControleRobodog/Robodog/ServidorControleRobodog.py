@@ -16,15 +16,17 @@ class ServidorControleRobodog:
                 print('Connected by', addr)
                 while True:
                     data = conn.recv(1024)
-                    if not data or data.decode() == -10:
+                    if not data or "-10.0" in data.decode():
                         break
 
                     listaPosicoes = data.decode().split(",")
-                    #floats = [float(x) for x in data.decode().split(",")]
-                    #print(floats)
-                    self.filaMovimentos.put(listaPosicoes)
-                    #print(data.decode())
                     print(listaPosicoes)
+
+                    if listaPosicoes[0] == "-10.0":
+                        break
+
+                    self.filaMovimentos.put(listaPosicoes)
+
 
     def __init__(self, filaMovimentos):
 

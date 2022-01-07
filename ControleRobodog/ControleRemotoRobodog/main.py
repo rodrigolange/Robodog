@@ -71,7 +71,7 @@ while not done:
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            cliente.enviar(-10)
+            cliente.enviar("-10.0")
             done = True
 
     if done == True:
@@ -85,7 +85,6 @@ while not done:
     pygame.draw.rect(screen, BLACK, (400, 150, 50, 50))
 
     textPrint.reset()
-
     textPrint.indent()
 
     dados = ''
