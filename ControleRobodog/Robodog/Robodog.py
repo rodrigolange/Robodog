@@ -14,18 +14,16 @@ s = Sonar.Sonar(23, 24)
 
 posicoesIniciais = [90, 0, 150, 90, 180, 40, 90, 0, 150, 90, 180, 40]
 posicoesF = [80, 0, 150, 100, 180, 40, 80, 50, 120, 100, 130, 70]  # levanta frente
-posicoesPernas = [90, 0, 150, 90, 180, 40, 90, 0, 150, 90, 180, 40]
+posicoesPernas = posicoesF
 
 
 def movimentoRobodog(in_q):
 
-    #p.moverPernasLento10(posicoesIniciais)
+    p.moverPernasLento10(posicoesIniciais)
     time.sleep(1)
 
-    #p.moverPernasLento10(posicoesF)
+    #p.moverPernasLento10(posicoesPernas)
     time.sleep(1)
-
-    posicoesPernas = posicoesF
 
     while True:
         data = in_q.get()

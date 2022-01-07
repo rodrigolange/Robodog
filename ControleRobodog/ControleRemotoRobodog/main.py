@@ -65,7 +65,8 @@ joystick.init()
 v = [0.0, 0.0, 0.0, 0.0]
 botoes = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 dados = "0.0,0.0,0.0,0.0,0,0,0,0,0,0,0,0,0,0,0,0,"
-dadosAnterior = "0.0,0.0,0.0,0.0,0,0,0,0,0,0,0,0,0,0,0,0,"
+dadosZero = "0.0,0.0,0.0,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0.0"
+#dadosAnterior = "0.0,0.0,0.0,0.0,0,0,0,0,0,0,0,0,0,0,0,0,"
 
 while not done:
 
@@ -100,10 +101,8 @@ while not done:
         textPrint.tprint(screen, "Botao {} value: {}".format(botao, botoes[botao]))
 
     dados = dados + "0.0"
-
-    if dados != dadosAnterior:
+    if dados != dadosZero:
         cliente.enviar(dados)
-        dadosAnterior = dados
 
     if botoes[4] == 1 and botoes[10] == 0:
         pygame.draw.rect(screen, (255, 0, 0), (300, 50, 50, 50))
