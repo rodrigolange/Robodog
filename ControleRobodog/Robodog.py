@@ -1,6 +1,6 @@
 import ServidorControleRobodog
 
-HOST = '127.0.0.1'
+HOST = '0.0.0.0'
 PORT = 65432
 
 print("Iniciando servidor de controle do Robodog")
