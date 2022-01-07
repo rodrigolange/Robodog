@@ -1,6 +1,6 @@
 import time
-import Pernas
-import Sonar
+import Hardware.Pernas as Pernas
+import Hardware.Sonar as Sonar
 posicoesF = [80, 0, 150, 100, 180, 40, 80, 50, 120, 100, 130, 70]  # levanta frente
 posicoesT = [80, 30, 120, 100, 150, 70, 80, 50, 120, 100, 130, 70]  # levanta atras
 
