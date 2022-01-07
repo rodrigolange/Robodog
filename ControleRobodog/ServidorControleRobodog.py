@@ -1,6 +1,8 @@
 import threading
 import socket
 
+HOST = '0.0.0.0'
+PORT = 65432
 
 class ServidorControleRobodog:
 
@@ -18,10 +20,7 @@ class ServidorControleRobodog:
                         break
                     print(data.decode())
 
-    def __init__(self, host, port):
-
-        self.HOST = host
-        self.PORT = port
+    def __init__(self):
 
         print("Criando a thread")
         x = threading.Thread(target=self.socketServidor)
