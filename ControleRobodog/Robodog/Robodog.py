@@ -22,7 +22,7 @@ def movimentoRobodog(in_q):
     p.moverPernasLento10(posicoesIniciais)
     time.sleep(1)
 
-    #p.moverPernasLento10(posicoesPernas)
+    p.moverPernasLento10(posicoesPernas)
     time.sleep(1)
 
     while True:
@@ -32,9 +32,12 @@ def movimentoRobodog(in_q):
 
         dados = [float(x)*10 for x in data]
 
-        posicoesPernas[10] = posicoesPernas[10] + int(dados[1])
-        print(posicoesPernas[10])
-        #p.moverPernasLento10(posicoesPernas)
+        if posicoesPernas[10] + int(dados[10]) > 0 and posicoesPernas[10] + int(dados[10]) < 200:
+            posicoesPernas[10] = posicoesPernas[10] + int(dados[1])
+            p.moverPernas(posicoesPernas)
+            print(posicoesPernas[10])
+
+
 
 
 
