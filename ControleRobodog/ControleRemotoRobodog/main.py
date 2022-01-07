@@ -71,7 +71,7 @@ while not done:
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            cliente.enviar("-10.0")
+            cliente.enviar("-10.0,-10.0,")
             done = True
 
     if done == True:
