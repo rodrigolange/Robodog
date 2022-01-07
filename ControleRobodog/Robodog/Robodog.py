@@ -32,12 +32,12 @@ def movimentoRobodog(in_q):
         if "-10.0" in data:
             break
 
-        dados = [float(x) for x in data]
+        dados = [float(x)*10 for x in data]
 
         posicoesPernas[10] = posicoesPernas[10] + int(dados[1])
+        print(posicoesPernas[10])
         #p.moverPernasLento10(posicoesPernas)
 
-        print(posicoesPernas[10])
 
 
 
