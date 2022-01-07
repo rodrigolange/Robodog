@@ -9,7 +9,7 @@ class ServidorControleRobodog:
     def socketServidor(self):
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             print("criando socket")
-            s.bind((self.HOST, self.PORT))
+            s.bind((HOST, PORT))
             s.listen()
             conn, addr = s.accept()
             with conn:
