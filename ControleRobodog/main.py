@@ -55,7 +55,7 @@ nroBotoesJoystick = pygame.joystick.Joystick(0).get_numbuttons()
 
 print("nro botoes: " + str(nroBotoesJoystick))
 
-servidor = ServidorControleRobodog.ServidorControleRobodog(HOST, PORT)
+servidor = ServidorControleRobodog.ServidorControleRobodog('10.0.0.200', PORT)
 cliente = Cliente.Cliente(HOST, PORT)
 textPrint = TextPrint()
 
