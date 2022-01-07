@@ -3,6 +3,7 @@ import pygame
 import Cliente
 import ServidorControleRobodog
 
+#ip robodog: 10.0.0.200
 HOST = '127.0.0.1'
 PORT = 65432
 
