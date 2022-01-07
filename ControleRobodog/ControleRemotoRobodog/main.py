@@ -59,6 +59,14 @@ print("nro botoes: " + str(nroBotoesJoystick))
 cliente = Cliente.Cliente(HOST, PORT)
 textPrint = TextPrint()
 
+joystick = pygame.joystick.Joystick(0)
+joystick.init()
+
+v = [0.0, 0.0, 0.0, 0.0]
+botoes = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+dados = "0.0,0.0,0.0,0.0,0,0,0,0,0,0,0,0,0,0,0,0,"
+dadosAnterior = "0.0,0.0,0.0,0.0,0,0,0,0,0,0,0,0,0,0,0,0,"
+
 while not done:
 
     for event in pygame.event.get():
@@ -77,58 +85,48 @@ while not done:
     pygame.draw.rect(screen, BLACK, (400, 150, 50, 50))
 
     textPrint.reset()
-    # Get count of joysticks.
-    joystick_count = pygame.joystick.get_count()
 
-    # For each joystick:
-    for i in range(joystick_count):
-        joystick = pygame.joystick.Joystick(0)
-        joystick.init()
+    textPrint.indent()
 
-        textPrint.tprint(screen, "Joystick {}".format(i))
-        textPrint.indent()
+    dados = ''
 
-        v = [0.0, 0.0, 0.0, 0.0]
-        botoes = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-        dados = ''
+    for axis in range(0, 4):
+        v[axis] = joystick.get_axis(axis)
+        textPrint.tprint(screen, "Axis {} value: {:>6.3f}".format(axis, v[axis]))
+        dados = dados + str(v[axis]) + ","
 
-        for axis in range(0, 4):
-            v[axis] = joystick.get_axis(axis)
-            textPrint.tprint(screen, "Axis {} value: {:>6.3f}".format(axis, v[axis]))
-            dados = dados + str(v[axis]) + ","
+    for botao in range(0, nroBotoesJoystick):
+        botoes[botao] = pygame.joystick.Joystick(0).get_button(botao)
+        dados = dados + str(botoes[botao]) + ","
+        textPrint.tprint(screen, "Botao {} value: {}".format(botao, botoes[botao]))
 
-        for botao in range(0, nroBotoesJoystick):
-            botoes[botao] = pygame.joystick.Joystick(0).get_button(botao)
-            dados = dados + str(botoes[botao]) + ","
-            textPrint.tprint(screen, "Botao {} value: {}".format(botao, botoes[botao]))
-
+    if dados != dadosAnterior:
         cliente.enviar(dados)
+        dadosAnterior = dados
 
-        if botoes[4] == 1 and botoes[10] == 0:
-            pygame.draw.rect(screen, (255, 0, 0), (300, 50, 50, 50))
-        if botoes[4] == 1 and botoes[10] == 1:
-            pygame.draw.rect(screen, (255, 0, 0), (300, 50, 50, 50))
-            pygame.draw.rect(screen, (0, 0, 0), (310, 60, 30, 30))
+    if botoes[4] == 1 and botoes[10] == 0:
+        pygame.draw.rect(screen, (255, 0, 0), (300, 50, 50, 50))
+    if botoes[4] == 1 and botoes[10] == 1:
+        pygame.draw.rect(screen, (255, 0, 0), (300, 50, 50, 50))
+        pygame.draw.rect(screen, (0, 0, 0), (310, 60, 30, 30))
 
-        if botoes[5] == 1 and botoes[11] == 0:
-            pygame.draw.rect(screen, (0, 255, 0), (400, 50, 50, 50))
-        if botoes[5] == 1 and botoes[11] == 1:
-            pygame.draw.rect(screen, (0, 255, 0), (400, 50, 50, 50))
-            pygame.draw.rect(screen, (0, 0, 0), (410, 60, 30, 30))
+    if botoes[5] == 1 and botoes[11] == 0:
+        pygame.draw.rect(screen, (0, 255, 0), (400, 50, 50, 50))
+    if botoes[5] == 1 and botoes[11] == 1:
+        pygame.draw.rect(screen, (0, 255, 0), (400, 50, 50, 50))
+        pygame.draw.rect(screen, (0, 0, 0), (410, 60, 30, 30))
 
-        if botoes[6] == 1 and botoes[10] == 0:
-            pygame.draw.rect(screen, (0, 0, 255), (300, 150, 50, 50))
-        if botoes[6] == 1 and botoes[10] == 1:
-            pygame.draw.rect(screen, (0, 0, 255), (300, 150, 50, 50))
-            pygame.draw.rect(screen, (0, 0, 0), (310, 160, 30, 30))
+    if botoes[6] == 1 and botoes[10] == 0:
+        pygame.draw.rect(screen, (0, 0, 255), (300, 150, 50, 50))
+    if botoes[6] == 1 and botoes[10] == 1:
+        pygame.draw.rect(screen, (0, 0, 255), (300, 150, 50, 50))
+        pygame.draw.rect(screen, (0, 0, 0), (310, 160, 30, 30))
 
-        if botoes[7] == 1 and botoes[11] == 0:
-            pygame.draw.rect(screen, (255, 255, 0), (400, 150, 50, 50))
-        if botoes[7] == 1 and botoes[11] == 1:
-            pygame.draw.rect(screen, (255, 255, 0), (400, 150, 50, 50))
-            pygame.draw.rect(screen, (0, 0, 0), (410, 160, 30, 30))
-
-
+    if botoes[7] == 1 and botoes[11] == 0:
+        pygame.draw.rect(screen, (255, 255, 0), (400, 150, 50, 50))
+    if botoes[7] == 1 and botoes[11] == 1:
+        pygame.draw.rect(screen, (255, 255, 0), (400, 150, 50, 50))
+        pygame.draw.rect(screen, (0, 0, 0), (410, 160, 30, 30))
 
     pygame.display.flip()
     # Limit to 2 frames per second.

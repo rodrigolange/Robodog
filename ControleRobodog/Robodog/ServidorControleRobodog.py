@@ -20,6 +20,8 @@ class ServidorControleRobodog:
                         break
 
                     listaPosicoes = data.decode().split(",")
+                    #floats = [float(x) for x in data.decode().split(",")]
+                    #print(floats)
                     self.filaMovimentos.put(listaPosicoes)
                     #print(data.decode())
                     print(listaPosicoes)
