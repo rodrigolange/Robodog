@@ -4,6 +4,7 @@ import socket
 HOST = '0.0.0.0'
 PORT = 65432
 
+
 class ServidorControleRobodog:
 
     def socketServidor(self):
@@ -23,10 +24,8 @@ class ServidorControleRobodog:
                     self.filaMovimentos.put(listaPosicoes)
 
                     if "-10.0" in data.decode():
+                        s.close()
                         break
-
-
-
 
     def __init__(self, filaMovimentos):
 
@@ -36,3 +35,4 @@ class ServidorControleRobodog:
         x = threading.Thread(target=self.socketServidor)
         print("Iniciando servidor socket")
         x.start()
+

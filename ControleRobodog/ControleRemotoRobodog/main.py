@@ -71,7 +71,7 @@ while not done:
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            cliente.enviar("-10.0,-10.0,")
+            cliente.enviar("-10.0,-10.0,-10.0")
             done = True
 
     if done == True:
@@ -98,6 +98,8 @@ while not done:
         botoes[botao] = pygame.joystick.Joystick(0).get_button(botao)
         dados = dados + str(botoes[botao]) + ","
         textPrint.tprint(screen, "Botao {} value: {}".format(botao, botoes[botao]))
+
+    dados = dados + "0.0"
 
     if dados != dadosAnterior:
         cliente.enviar(dados)

@@ -16,6 +16,7 @@ def consumer(in_q):
         # Get some data
         data = in_q.get()
         print(data)
+
         if "-10.0" in data:
             break
 
