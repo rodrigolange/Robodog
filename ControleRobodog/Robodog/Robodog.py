@@ -19,14 +19,11 @@ p = Pernas.Pernas()
 s = Sonar.Sonar(23, 24)
 
 posicoesIniciais = [90, 0, 150, 90, 180, 40, 90, 0, 150, 90, 180, 40]
-posicoesF = [80, 0, 150, 100, 180, 40, 80, 50, 120, 100, 130, 70]  # levanta frente
-posicoesPernas = posicoesF
+posInicial = [80, 0, 150, 100, 180, 40, 80, 50, 120, 100, 130, 70]  # levanta frente
 
 
-def movimentoRobodog(in_q):
-
-    p.moverPernasLento10(posicoesIniciais)
-    time.sleep(1)
+def movimentoRobodog(in_q, posicaoInicial):
+    posicoesPernas = posicaoInicial
 
     p.moverPernasLento10(posicoesPernas)
     time.sleep(1)
@@ -39,8 +36,7 @@ def movimentoRobodog(in_q):
         dados = [float(x)*10 for x in data]
 
         if dados[5] == 10:
-            p.moverPernasRapido(posicoesIniciais)
-            time.sleep(1)
+            posicoesPernas = posicaoInicial
         else:
             if dados[8] == 10 and dados[14] == 0:
                 if 0 < posicoesPernas[10] + int(dados[1]) < 180:
@@ -65,11 +61,11 @@ def movimentoRobodog(in_q):
             #         posicoesPernas[8] = posicoesPernas[8] + int(dados[3])
             #         print(posicoesPernas[11])
 
-            p.moverPernasRapido(posicoesPernas)
+        p.moverPernasRapido(posicoesPernas)
 
 
 print("Iniciando servidor de controle do Robodog")
 Robodog = ServidorControleRobodog.ServidorControleRobodog(filaMovimentos)
 
-tMovimentoRobodog = threading.Thread(target=movimentoRobodog, args =(filaMovimentos, ))
+tMovimentoRobodog = threading.Thread(target=movimentoRobodog, args =(filaMovimentos, posInicial))
 tMovimentoRobodog.start()
