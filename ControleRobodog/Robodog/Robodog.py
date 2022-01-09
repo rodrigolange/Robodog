@@ -23,7 +23,8 @@ posInicial = [80, 0, 150, 100, 180, 40, 80, 50, 120, 100, 130, 70]  # levanta fr
 
 
 def movimentoRobodog(in_q, posicaoInicial):
-    posicoesPernas = posicaoInicial
+    posIn = posicaoInicial
+    posicoesPernas = posIn
 
     p.moverPernasLento10(posicoesPernas)
     time.sleep(1)
@@ -37,7 +38,7 @@ def movimentoRobodog(in_q, posicaoInicial):
 
         if dados[5] == 10:
             print("dados[5]")
-            posicoesPernas = posicaoInicial
+            posicoesPernas = posIn
             p.moverPernasRapido(posicoesPernas)
             time.sleep(1)
         else:
@@ -47,21 +48,21 @@ def movimentoRobodog(in_q, posicaoInicial):
                     posicoesPernas[10] = posicoesPernas[10] + int(dados[1])
 
             if dados[9] == 10 and dados[15] == 0:
-                if 0 < posicoesPernas[7] + (int(dados[3]*-1)) < 180:
+                if 0 < posicoesPernas[7] - int(dados[3]) < 180:
                     #print("nova posicao pernas[7]")
                     posicoesPernas[7] = posicoesPernas[7] + int(dados[3])
 
             if dados[10] == 10 and dados[14] == 0:
                 if 0 < posicoesPernas[11] + int(dados[1]) < 180:
-                    print("nova posicao pernas[11]")
+                    #print("nova posicao pernas[11]")
                     posicoesPernas[11] = posicoesPernas[11] + int(dados[1])
 
             if dados[11] == 10 and dados[15] == 0:
-                if 0 < posicoesPernas[8] + (int(dados[3]*-1)) < 180:
-                    print("nova posicao pernas[11]")
+                if 0 < posicoesPernas[8] - int(dados[3]) < 180:
+                    #print("nova posicao pernas[8]")
                     posicoesPernas[8] = posicoesPernas[8] + int(dados[3])
 
-        p.moverPernasRapido(posicoesPernas)
+            p.moverPernasRapido(posicoesPernas)
 
 
 print("Iniciando servidor de controle do Robodog")
