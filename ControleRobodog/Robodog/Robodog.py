@@ -32,12 +32,20 @@ def movimentoRobodog(in_q):
 
         dados = [float(x)*10 for x in data]
 
-        if posicoesPernas[10] + int(dados[10]) > 0 and posicoesPernas[10] + int(dados[10]) < 180:
-            posicoesPernas[10] = posicoesPernas[10] + int(dados[1])
-            p.moverPernasRapido(posicoesPernas)
-            print(posicoesPernas[10])
+        print(dados)
+
+        if dados[4] == 10 and dados[10] == 0:
+            if posicoesPernas[10] + int(dados[0]) > 0 and posicoesPernas[10] + int(dados[0]) < 180:
+                posicoesPernas[10] = posicoesPernas[10] + int(dados[1])
+                print(posicoesPernas[10])
+
+        if dados[5] == 10 and dados[11] == 0:
+            if posicoesPernas[7] + int(dados[1]) > 0 and posicoesPernas[10] + int(dados[1]) < 180:
+                posicoesPernas[7] = posicoesPernas[10] + int(dados[1])
+                print(posicoesPernas[7])
 
 
+        p.moverPernasRapido(posicoesPernas)
 
 
 

@@ -1,5 +1,4 @@
 import pygame
-
 import Cliente
 
 #ip robodog: 10.0.0.200
@@ -92,7 +91,7 @@ while not done:
 
     for axis in range(0, 4):
         v[axis] = joystick.get_axis(axis)
-        textPrint.tprint(screen, "Axis {} value: {:>6.3f}".format(axis, v[axis]))
+        textPrint.tprint(screen, "Axis {} value: {:>6.2f}".format(axis, v[axis]))
         dados = dados + str(v[axis]) + ","
 
     for botao in range(0, nroBotoesJoystick):
