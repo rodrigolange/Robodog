@@ -42,16 +42,19 @@ def movimentoRobodog(in_q):
 
         if dados[4] == 10 and dados[10] == 0:
             if 0 < posicoesPernas[10] + int(dados[1]) < 180:
+                print("nova posicao pernas[10]")
                 posicoesPernas[10] = posicoesPernas[10] + int(dados[1])
                 print(posicoesPernas[10])
 
         if dados[5] == 10 and dados[11] == 0:
             if 0 < posicoesPernas[7] + int(dados[3]) < 180:
+                print("nova posicao pernas[7]")
                 posicoesPernas[7] = posicoesPernas[7] + int(dados[3])
                 print(posicoesPernas[7])
 
         if dados[6] == 10 and dados[10] == 0:
             if 0 < posicoesPernas[11] + int(dados[3]) < 180:
+                print("nova posicao pernas[11]")
                 posicoesPernas[11] = posicoesPernas[11] + int(dados[3])
                 print(posicoesPernas[11])
 
