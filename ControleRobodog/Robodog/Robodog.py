@@ -18,13 +18,9 @@ filaMovimentos = Queue()
 p = Pernas.Pernas()
 s = Sonar.Sonar(23, 24)
 
-posicoesIniciais = [90, 0, 150, 90, 180, 40, 90, 0, 150, 90, 180, 40]
-posInicial = [80, 0, 150, 100, 180, 40, 80, 50, 120, 100, 130, 70]  # levanta frente
-
-
-def movimentoRobodog(in_q, posicaoInicial):
-    posIn = posicaoInicial
-    posicoesPernas = posIn
+def movimentoRobodog(in_q):
+    posInicial = [80, 0, 150, 100, 180, 40, 80, 50, 120, 100, 130, 70]  # levanta frente
+    posicoesPernas = posInicial
 
     p.moverPernasLento10(posicoesPernas)
     time.sleep(1)
@@ -38,9 +34,7 @@ def movimentoRobodog(in_q, posicaoInicial):
 
         if dados[5] == 10:
             print("dados[5]")
-            posicoesPernas = posIn
-            p.moverPernasRapido(posicoesPernas)
-            time.sleep(1)
+            posicoesPernas = posInicial
         else:
             if dados[8] == 10 and dados[14] == 0:
                 if 0 < posicoesPernas[10] + int(dados[1]) < 180:
@@ -50,7 +44,7 @@ def movimentoRobodog(in_q, posicaoInicial):
             if dados[9] == 10 and dados[15] == 0:
                 if 0 < posicoesPernas[7] - int(dados[3]) < 180:
                     #print("nova posicao pernas[7]")
-                    posicoesPernas[7] = posicoesPernas[7] + int(dados[3])
+                    posicoesPernas[7] = posicoesPernas[7] - int(dados[3])
 
             if dados[10] == 10 and dados[14] == 0:
                 if 0 < posicoesPernas[11] + int(dados[1]) < 180:
@@ -60,13 +54,13 @@ def movimentoRobodog(in_q, posicaoInicial):
             if dados[11] == 10 and dados[15] == 0:
                 if 0 < posicoesPernas[8] - int(dados[3]) < 180:
                     #print("nova posicao pernas[8]")
-                    posicoesPernas[8] = posicoesPernas[8] + int(dados[3])
+                    posicoesPernas[8] = posicoesPernas[8] - int(dados[3])
 
-            p.moverPernasRapido(posicoesPernas)
+        p.moverPernasRapido(posicoesPernas)
 
 
 print("Iniciando servidor de controle do Robodog")
 Robodog = ServidorControleRobodog.ServidorControleRobodog(filaMovimentos)
 
-tMovimentoRobodog = threading.Thread(target=movimentoRobodog, args=(filaMovimentos, posInicial))
+tMovimentoRobodog = threading.Thread(target=movimentoRobodog, args=(filaMovimentos,))
 tMovimentoRobodog.start()
