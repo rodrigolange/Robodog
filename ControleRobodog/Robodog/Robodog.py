@@ -33,7 +33,6 @@ def movimentoRobodog(in_q):
         dados = [float(x)*10 for x in data]
 
         if dados[5] == 10:
-            print("dados[5]")
             posicoesPernas = [80, 0, 150, 100, 180, 40, 80, 50, 120, 100, 130, 70]
             p.moverPernasLento10(posicoesPernas)
             time.sleep(1)
@@ -58,7 +57,7 @@ def movimentoRobodog(in_q):
                     #print("nova posicao pernas[8]")
                     posicoesPernas[8] = posicoesPernas[8] - int(dados[3])
 
-        p.moverPernasRapido(posicoesPernas)
+            p.moverPernasRapido(posicoesPernas)
 
 
 print("Iniciando servidor de controle do Robodog")
