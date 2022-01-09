@@ -34,7 +34,9 @@ def movimentoRobodog(in_q):
 
         if dados[5] == 10:
             print("dados[5]")
-            posicoesPernas = posInicial
+            posicoesPernas = [80, 0, 150, 100, 180, 40, 80, 50, 120, 100, 130, 70]
+            p.moverPernasLento10(posicoesPernas)
+            time.sleep(1)
         else:
             if dados[8] == 10 and dados[14] == 0:
                 if 0 < posicoesPernas[10] + int(dados[1]) < 180:
