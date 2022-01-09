@@ -1,3 +1,9 @@
+# dados[0] = stick esquerda, lateral
+# dados[1] = stick esquerda, frente
+# dados[2] = stick direita, lateral
+# dados[3] = stick direita, frente
+
+
 import threading
 import time
 
@@ -35,14 +41,19 @@ def movimentoRobodog(in_q):
         print(dados)
 
         if dados[4] == 10 and dados[10] == 0:
-            if posicoesPernas[10] + int(dados[0]) > 0 and posicoesPernas[10] + int(dados[0]) < 180:
+            if 0 < posicoesPernas[10] + int(dados[1]) < 180:
                 posicoesPernas[10] = posicoesPernas[10] + int(dados[1])
                 print(posicoesPernas[10])
 
         if dados[5] == 10 and dados[11] == 0:
-            if posicoesPernas[7] + int(dados[1]) > 0 and posicoesPernas[10] + int(dados[1]) < 180:
-                posicoesPernas[7] = posicoesPernas[10] + int(dados[1])
+            if 0 < posicoesPernas[7] + int(dados[3]) < 180:
+                posicoesPernas[7] = posicoesPernas[7] + int(dados[3])
                 print(posicoesPernas[7])
+
+        if dados[6] == 10 and dados[10] == 0:
+            if 0 < posicoesPernas[11] + int(dados[3]) < 180:
+                posicoesPernas[11] = posicoesPernas[11] + int(dados[3])
+                print(posicoesPernas[11])
 
 
         p.moverPernasRapido(posicoesPernas)
