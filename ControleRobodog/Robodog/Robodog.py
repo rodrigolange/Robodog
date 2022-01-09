@@ -36,30 +36,30 @@ def movimentoRobodog(in_q, posicaoInicial):
         dados = [float(x)*10 for x in data]
 
         if dados[5] == 10:
+            print("dados[5]")
             posicoesPernas = posicaoInicial
+            p.moverPernasRapido(posicoesPernas)
+            time.sleep(1)
         else:
             if dados[8] == 10 and dados[14] == 0:
                 if 0 < posicoesPernas[10] + int(dados[1]) < 180:
-                    print("nova posicao pernas[10]: " + str(posicoesPernas[10]))
+                    #print("nova posicao pernas[10]: " + str(posicoesPernas[10]))
                     posicoesPernas[10] = posicoesPernas[10] + int(dados[1])
 
-            # if dados[9] == 10 and dados[15] == 0:
-            #     if 0 < posicoesPernas[7] + int(dados[3]) < 180:
-            #         print("nova posicao pernas[7]")
-            #         posicoesPernas[7] = posicoesPernas[7] + int(dados[3])
-            #         print(posicoesPernas[7])
-            #
-            # if dados[10] == 10 and dados[14] == 0:
-            #     if 0 < posicoesPernas[11] + int(dados[1]) < 180:
-            #         print("nova posicao pernas[11]")
-            #         posicoesPernas[11] = posicoesPernas[11] + int(dados[1])
-            #         print(posicoesPernas[11])
-            #
-            # if dados[11] == 10 and dados[15] == 0:
-            #     if 0 < posicoesPernas[8] + int(dados[3]) < 180:
-            #         print("nova posicao pernas[11]")
-            #         posicoesPernas[8] = posicoesPernas[8] + int(dados[3])
-            #         print(posicoesPernas[11])
+            if dados[9] == 10 and dados[15] == 0:
+                if 0 < posicoesPernas[7] + (int(dados[3]*-1)) < 180:
+                    #print("nova posicao pernas[7]")
+                    posicoesPernas[7] = posicoesPernas[7] + int(dados[3])
+
+            if dados[10] == 10 and dados[14] == 0:
+                if 0 < posicoesPernas[11] + int(dados[1]) < 180:
+                    print("nova posicao pernas[11]")
+                    posicoesPernas[11] = posicoesPernas[11] + int(dados[1])
+
+            if dados[11] == 10 and dados[15] == 0:
+                if 0 < posicoesPernas[8] + (int(dados[3]*-1)) < 180:
+                    print("nova posicao pernas[11]")
+                    posicoesPernas[8] = posicoesPernas[8] + int(dados[3])
 
         p.moverPernasRapido(posicoesPernas)
 
@@ -67,5 +67,5 @@ def movimentoRobodog(in_q, posicaoInicial):
 print("Iniciando servidor de controle do Robodog")
 Robodog = ServidorControleRobodog.ServidorControleRobodog(filaMovimentos)
 
-tMovimentoRobodog = threading.Thread(target=movimentoRobodog, args =(filaMovimentos, posInicial))
+tMovimentoRobodog = threading.Thread(target=movimentoRobodog, args=(filaMovimentos, posInicial))
 tMovimentoRobodog.start()
